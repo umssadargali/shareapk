@@ -1,0 +1,45 @@
+<style>
+    .share-btn {
+        background-color: #25D366; /* WhatsApp Green color */
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .share-btn:hover {
+        background-color: #128C7E;
+    }
+</style>
+
+<button class="share-btn" onclick="shareApp()">
+    <span>Share App Link</span>
+</button>
+
+<script>
+function shareApp() {
+    // Ye check karta hai ki browser share support karta hai ya nahi
+    if (navigator.share) {
+        navigator.share({
+            title: 'Download our App',
+            text: 'Hello! Download this Education App from here:',
+            url: 'https://sagarpublicschool.github.io/share_sps'
+        })
+        .then(() => {
+            console.log('Successfully shared');
+        })
+        .catch((error) => {
+            console.error('Error sharing:', error);
+        });
+    } else {
+        // Agar browser support nahi karta (jaise Desktop Chrome), to ye alert dikhayega
+        alert("Sharing feature is supported only on mobile browsers via HTTPS.");
+    }
+}
+</script>
