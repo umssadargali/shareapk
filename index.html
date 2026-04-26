@@ -1,45 +1,58 @@
-<style>
-    .share-btn {
-        background-color: #25D366; /* WhatsApp Green color */
-        color: white;
-        padding: 12px 24px;
-        border: none;
-        border-radius: 8px;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    .share-btn:hover {
-        background-color: #128C7E;
-    }
-</style>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Isse button screen ke beech mein aayega */
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+        }
 
-<button class="share-btn" onclick="shareApp()">
-    <span>Share App Link</span>
-</button>
+        .share-btn {
+            background-color: #25D366; 
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px; /* Rounded corners */
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
 
-<script>
-function shareApp() {
-    // Ye check karta hai ki browser share support karta hai ya nahi
-    if (navigator.share) {
-        navigator.share({
-            title: 'Download our App',
-            text: 'Hello! Download this Education App from here:',
-            url: 'https://sagarpublicschool.github.io/share_sps'
-        })
-        .then(() => {
-            console.log('Successfully shared');
-        })
-        .catch((error) => {
-            console.error('Error sharing:', error);
-        });
-    } else {
-        // Agar browser support nahi karta (jaise Desktop Chrome), to ye alert dikhayega
-        alert("Sharing feature is supported only on mobile browsers via HTTPS.");
+        .share-btn:active {
+            transform: scale(0.95); /* Click karne par chota hoga */
+        }
+    </style>
+</head>
+<body>
+
+    <button class="share-btn" onclick="shareApp()">
+        Share App Link
+    </button>
+
+    <script>
+    function shareApp() {
+        if (navigator.share) {
+            navigator.share({
+                title: 'Download our App',
+                text: 'Hello! Download this Education App from here:',
+                url: 'https://play.google.com/store/apps/details?id=sps.apk'
+            })
+            .then(() => console.log('Successful share'))
+            .catch((error) => console.log('Error sharing', error));
+        } else {
+            alert("Please use a mobile browser to share.");
+        }
     }
-}
-</script>
+    </script>
+
+</body>
+</html>
